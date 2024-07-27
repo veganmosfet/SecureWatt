@@ -17,7 +17,7 @@ The Growatt MIC600TL-X is a popular solar inverter. It has a CE symbol and VDE A
 TOE:
 
 * A **Growatt MIC600TL-X** (600 W) w/ latest FW. Note that the whole TL-X family may be affected.
-* A **ShineWIFI-X Stick** for cloud communication w/ FW 3.1.0.5 (latest). 
+* A **ShineWIFI-X Stick** for cloud communication w/ FW 3.1.0.5. 
 * The **Growatt web cloud acccess** at [server.growatt.com](https://server.growatt.com).
 
 Basically, an inverter transforms the electrical energy from the solar panels (DC) into grid compatible energy (AC 230 V 50 Hz sinus in Europe). 
